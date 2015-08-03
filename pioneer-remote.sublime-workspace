@@ -1,0 +1,265 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 387.0,
+		"last_filter": "glue",
+		"selected_items":
+		[
+			[
+				"glue",
+				"Glue - Launch"
+			],
+			[
+				"intsl",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: upda",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Package Control: disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 573.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"glue path",
+			"import ConfigParser",
+			"pwd",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/mboivin/dev/pioneer-remote"
+	],
+	"file_history":
+	[
+		"/Users/mboivin/dev/pioneer-remote/remote.py",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/Glue/keymaps/Default (OSX).sublime-keymap",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/mboivin/dev/game/terminal.glue",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/User/Glue.sublime-settings",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/Glue/Glue.sublime-settings",
+		"/Users/mboivin/dev/game/level.map",
+		"/Users/mboivin/Desktop/pgame-tiled-tileset.png",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/mboivin/dev/bill-asap/CLI/promutuel-rsi3b.json",
+		"/Users/mboivin/dev/vici-doc.wiki/Production.md",
+		"/Users/mboivin/dev/vici-doc.wiki/_Sidebar.md",
+		"/Users/mboivin/dev/vici-doc.wiki/Ganeti.md",
+		"/Users/mboivin/dev/vici-doc.wiki/Ceph.md",
+		"/Users/mboivin/Downloads/image1.stk",
+		"/Users/mboivin/dev/switch-manager/ips.tmp",
+		"/Users/mboivin/dev/switch-manager/192.168.97.0",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/Users/mboivin/.chef/chef-repo/cookbooks/noc1/recipes/mosh.rb",
+		"/Users/mboivin/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/mboivin/dev/vicio-dashboard/Libéo - Votre référence numérique.html",
+		"/Users/mboivin/.chef/chef-repo/cookbooks/libeo-instances/cmeq/recipes/default.rb",
+		"/Users/mboivin/.chef/chef-repo/cookbooks/libeo-instances/cmeq/metadata.rb"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" ",
+			"non_field_errors",
+			"2015/05/31",
+			"2015-05-31",
+			"-",
+			"=#",
+			"}}}",
+			"{{{",
+			"=#",
+			"== ",
+			"}}}",
+			"{{{",
+			"== ",
+			"OS: créer une VM en Squeeze ou Wheezy",
+			"OS: créer une VM en Squeeze ou Wheezy\n\n",
+			" =",
+			"==",
+			"===",
+			"}}}",
+			"{{{",
+			"=#",
+			"= ",
+			"}}}",
+			"{{{",
+			"#!/bin/",
+			"bash",
+			"=",
+			"cron.service",
+			"burp",
+			"Libéo - Votre référence numérique_files"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "pioneer-remote.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"vintage":
+		{
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

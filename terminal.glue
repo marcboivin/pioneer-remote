@@ -1,0 +1,19 @@
+█ [ /Users/mboivin/dev/pioneer-remote ] pwd
+/Users/mboivin/dev/pioneer-remote
+
+█ [ /Users/mboivin/dev/pioneer-remote ] pip install requirements.txt
+Collecting requirements.txt
+  Could not find a version that satisfies the requirement requirements.txt (from versions: )
+No matching distribution found for requirements.txt
+
+█ [ /Users/mboivin/dev/pioneer-remote ] pip install dependencies.txt
+Collecting dependencies.txt
+  Could not find a version that satisfies the requirement dependencies.txt (from versions: )
+No matching distribution found for dependencies.txt
+
+█ [ /Users/mboivin/dev/pioneer-remote ] pip install dependencies.txt
+Collecting dependencies.txt
+  Could not find a version that satisfies the requirement dependencies.txt (from versions: )
+No matching distribution found for dependencies.txt
+
+ 
