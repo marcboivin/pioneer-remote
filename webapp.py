@@ -1,6 +1,9 @@
 from flask import Flask
 from remote import Remote 
 from flask import render_template
+import yaml
+import redis
+import threading
 
 
 app = Flask(__name__)
@@ -12,9 +15,45 @@ def main_interface():
 
 @app.route('/run/<cmd>')
 def exec_command(cmd):
-	pioneer = Remote(app.config["PIONEER"])
-	pioneer.send_cmd(cmd)
-	return "Ran {} on {}".format(cmd, app.config["PIONEER"])
+	r = redis.Redis()
+	r.publish('remote', cmd)
+
+	return "Sent {} in the queue".format(cmd)
+
+@app.route('/cmd/list')
+def list_commands():
+	return get_allowed_commands()
+
+def get_allowed_commands():
+	with open("example.yaml", 'r') as stream:
+		print(yaml.load(stream))
+
+class Listener(threading.Thread):
+	def __init__(self, r, channels):
+	    threading.Thread.__init__(self)
+	    self.redis = redis.Redis()
+	    self.pubsub = self.redis.pubsub()
+	    self.pubsub.subscribe(channels)
+	    self.remote = Remote(app.config["PIONEER"])
+
+	def work(self, item):
+			if item["type"] == "message":
+				print item['channel'], ":", item['data']
+				self.remote.send_cmd(item['data'])
+
+	def run(self):
+	    for item in self.pubsub.listen():
+	        if item['data'] == "KILL":
+	            self.pubsub.unsubscribe()
+	            print self, "unsubscribed and finished"
+	            break
+	        else:
+	            self.work(item)
 
 if __name__ == '__main__' :
+	print("Starting Redis event loop")
+	r = redis.Redis()
+	client = Listener(r, ['remote'])
+	client.start()
+	
 	app.run()
