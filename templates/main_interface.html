@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html  lang="en" ng-app="pioneerRemoteApp">
+	<head>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script src="{{ url_for('static', filename='js/controllers.js') }}"></script>
+	</head>
+	<body ng-controller="ButtonListCtrl">
+{% raw %}
+		<div ng-repeat="button in buttons">
+				<button data-action="{{button.action}}" ng-click="send_cmd(button.action)">{{button.name}}</button>
+		</div>
+{% endraw %}
+	</body>
+
+</html>
