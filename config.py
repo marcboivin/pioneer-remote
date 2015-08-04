@@ -19,6 +19,7 @@ class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
     PIONEER = "192.168.56.223"
+    KODI = ["192.168.56.225", "192.168.56.182"]
 
 class TestingConfig(Config):
     TESTING = True

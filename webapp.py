@@ -1,5 +1,6 @@
 from flask import Flask
 from remote import Remote 
+from flask import render_template
 
 
 app = Flask(__name__)
@@ -7,7 +8,7 @@ app.config.from_object('config.DevelopmentConfig')
 
 @app.route('/')
 def main_interface():
-	return "Hello World"
+	return render_template("main_interface.html")
 
 @app.route('/run/<cmd>')
 def exec_command(cmd):
