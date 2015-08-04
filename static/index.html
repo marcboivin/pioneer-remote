@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html  lang="en" ng-app="pioneerRemoteApp">
+	<head>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+		<script src="js/controllers.js"></script>
+	</head>
+	<body ng-controller="ButtonListCtrl">
+
+		<div ng-repeat="for button in buttons">
+				<button data-action="{{button.action}}">{{button.name}}</button>
+		</div>
+	</body>
+</html>
