@@ -1,7 +1,7 @@
 from flask import Flask
 from remote import Remote 
 from flask import render_template
-import yaml
+import ConfigParser
 import redis
 import threading
 
@@ -25,8 +25,9 @@ def list_commands():
 	return get_allowed_commands()
 
 def get_allowed_commands():
-	with open("example.yaml", 'r') as stream:
-		print(yaml.load(stream))
+	config = ConfigParser.ConfigParser()
+	config.readfp(open('allowed_commands.yml'))
+	print(config)
 
 class Listener(threading.Thread):
 	def __init__(self, r, channels):
