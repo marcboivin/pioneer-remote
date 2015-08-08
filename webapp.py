@@ -38,7 +38,7 @@ class Listener(threading.Thread):
 	    self.remote = Remote(app.config["PIONEER"])
 
 	def work(self, item):
-			if item["type"] == "message":
+			if item["type"] == "message" and item["channel"] == "remote":
 				print item['channel'], ":", item['data']
 				self.remote.send_cmd(item['data'])
 
