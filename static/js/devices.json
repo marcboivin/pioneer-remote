@@ -3,8 +3,8 @@
 		"name" : "Pioneer amplifier SC-1228",
 		"commands": [
 			{"name":"Volume Down","action":"VD"},
-			{"name":"Mute","action":"MZ"},
 			{"name":"Volume Up","action":"VU"},
+			{"name":"Mute","action":"MZ"},
 			{"name":"What's tha volume yo?","action":"?V"},
 			{"name":"Power Off","action":"PF"},
 			{"name":"Power On","action":"PO"},
