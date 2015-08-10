@@ -20,27 +20,17 @@ def exec_command(cmd):
 
 	return "Sent {} in the queue".format(cmd)
 
-@app.route('/cmd/list')
-def list_commands():
-	return get_allowed_commands()
-
-def get_allowed_commands():
-	config = ConfigParser.ConfigParser()
-	config.readfp(open('allowed_commands.yml'))
-	print(config)
-
 class Listener(threading.Thread):
 	def __init__(self, r, channels):
 	    threading.Thread.__init__(self)
 	    self.redis = redis.Redis()
 	    self.pubsub = self.redis.pubsub()
 	    self.pubsub.subscribe(channels)
-	    self.remote = Remote(app.config["PIONEER"])
+	    self.remote = Remote(app.config["PIONEER"], './static/js/devices.json')
 
 	def work(self, item):
-			if item["type"] == "message" and item["channel"] == "remote":
-				print item['channel'], ":", item['data']
-				self.remote.send_cmd(item['data'])
+			print item['channel'], ":", item['data']
+			self.remote.send_cmd(item['data'])
 
 	def run(self):
 	    for item in self.pubsub.listen():
@@ -49,7 +39,8 @@ class Listener(threading.Thread):
 	            print self, "unsubscribed and finished"
 	            break
 	        else:
-	            self.work(item)
+	        	if item["type"] == "message" and item["channel"] == "remote":
+							self.work(item)
 
 if __name__ == '__main__' :
 	print("Starting Redis event loop")
