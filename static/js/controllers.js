@@ -16,6 +16,6 @@ pioneerApp.controller('ButtonListCtrl', ['$scope', '$http', function ($scope, $h
         });
         
   $scope.send_cmd = function(cmd){
-  	jQuery.get('run/'+ cmd)
+  	jQuery.get('run/PIONEERSC1228/'+ cmd)
   }
 }]);

@@ -13,9 +13,9 @@ def main_interface():
 	return render_template("main_interface.html")
 
 @app.route('/run/<device>/<cmd>')
-def exec_command(cmd):
+def exec_command(device, cmd):
 	r = redis.Redis()
-	r.publish('remote', cmd)
+	r.publish(device, cmd)
 
 	return "Sent {} in the queue".format(cmd)
 
@@ -33,9 +33,10 @@ if __name__ == '__main__' :
 		device_type = data[device]["type"]
 		if device_type=="telnet":
 			new_device = TelnetDevice(data[device]["IP"],app.config["DEVICE_FILE"], device)
+			new_device.start()
 
 		if new_device:
-			devices.extend(new_device)
+			devices.append(new_device)
 		else:
 			print "Device {} not supported".format(device)
 

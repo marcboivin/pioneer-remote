@@ -5,7 +5,7 @@ import threading
 
 class TelnetDevice(threading.Thread):
 
-	def __init__ (self, IP, device_json_path, model_name, r):
+	def __init__ (self, IP, device_json_path, model_name):
 		threading.Thread.__init__(self)
 		self.json_path = device_json_path
 		self.ip = IP
@@ -14,6 +14,7 @@ class TelnetDevice(threading.Thread):
 		self.get_allowed_commands()
 
 		# Starting the pubsub queue
+		print "{} starting redis queue".format(self.model_name)
 		self.redis = redis.Redis()
 		self.pubsub = self.redis.pubsub()
 		self.pubsub.subscribe(self.model_name)
@@ -51,6 +52,7 @@ class TelnetDevice(threading.Thread):
 			self.send_cmd(item['data'])
 
 	def run(self):
+		print "{} recieved command".format(self.model_name)
 		for item in self.pubsub.listen():
 			if item['data'] == "KILL":
 				self.pubsub.unsubscribe()
