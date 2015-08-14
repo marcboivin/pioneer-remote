@@ -17,7 +17,7 @@ class TelnetDevice(threading.Thread):
 		print "{} starting redis queue".format(self.model_name)
 		self.redis = redis.Redis()
 		self.pubsub = self.redis.pubsub()
-		self.pubsub.subscribe(self.model_name)
+		self.pubsub.subscribe([self.model_name])
 
 	def send_cmd(self, cmd):
 		try:

@@ -14,6 +14,7 @@ def main_interface():
 
 @app.route('/run/<device>/<cmd>')
 def exec_command(device, cmd):
+	print "Command for {}".format(device)
 	r = redis.Redis()
 	r.publish(device, cmd)
 
