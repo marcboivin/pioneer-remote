@@ -1,14 +1,22 @@
 import telnetlib
 import json
+import redis
+import threading
 
+class TelnetDevice(threading.Thread):
 
-class TelnetDevice:
-	def __init__ (self, IP, device_json_path, model_name):
+	def __init__ (self, IP, device_json_path, model_name, r):
+		threading.Thread.__init__(self)
 		self.json_path = device_json_path
 		self.ip = IP
 		self.commands = False
 		self.model_name = model_name
 		self.get_allowed_commands()
+
+		# Starting the pubsub queue
+		self.redis = redis.Redis()
+		self.pubsub = self.redis.pubsub()
+		self.pubsub.subscribe(self.model_name)
 
 	def send_cmd(self, cmd):
 		try:
@@ -35,6 +43,21 @@ class TelnetDevice:
 
 		except:
 			return False
+
+	# Pass the redis item form a queue, must be from the model_name queue
+	# The function will do the work only if the requiresments are met
+	def from_redis_queue(self, item):
+		if item["type"] == "message" and item["channel"] == self.model_name:
+			self.send_cmd(item['data'])
+
+	def run(self):
+		for item in self.pubsub.listen():
+			if item['data'] == "KILL":
+				self.pubsub.unsubscribe()
+				print self, "unsubscribed and finished"
+				break
+			else:
+				self.from_redis_queue(item)
 
 	def get_allowed_commands(self):
 		json_data=open(self.json_path).read()
