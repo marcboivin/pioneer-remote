@@ -17,14 +17,13 @@ class TelnetDevice(threading.Thread):
 		print "{} starting redis queue".format(self.model_name)
 		self.redis = redis.Redis()
 		self.pubsub = self.redis.pubsub()
-		self.pubsub.subscribe([self.model_name])
+		self.pubsub.subscribe(self.model_name)
 
 	def send_cmd(self, cmd):
 		try:
 			# Valdation the action against the allow action list
 			for action in self.commands:
 				if action["action"]== cmd :
-
 					# Converting to ASCII caus PIONEERR's telnet is from 1904
 					udata=cmd.decode("utf-8")
 					asciidata=udata.encode("ascii","ignore")
