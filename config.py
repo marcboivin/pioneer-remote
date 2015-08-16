@@ -18,8 +18,8 @@ class StagingConfig(Config):
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
-    PIONEER = "192.168.56.223"
-    KODI = ["192.168.56.225", "192.168.56.182"]
+    # Where is the file containning all the devices and their commands
+    DEVICE_FILE = "./static/js/devices.json" 
 
 class TestingConfig(Config):
     TESTING = True

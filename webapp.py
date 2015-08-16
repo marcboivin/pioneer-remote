@@ -1,9 +1,8 @@
 from flask import Flask
-from remote import Remote 
+from telnet_device import TelnetDevice 
 from flask import render_template
-import ConfigParser
 import redis
-import threading
+import json
 
 
 app = Flask(__name__)
@@ -13,39 +12,33 @@ app.config.from_object('config.DevelopmentConfig')
 def main_interface():
 	return render_template("main_interface.html")
 
-@app.route('/run/<cmd>')
-def exec_command(cmd):
+@app.route('/run/<device>/<cmd>')
+def exec_command(device, cmd):
+	print "Command for {}".format(device)
 	r = redis.Redis()
-	r.publish('remote', cmd)
+	r.publish(device, cmd)
 
 	return "Sent {} in the queue".format(cmd)
 
-class Listener(threading.Thread):
-	def __init__(self, r, channels):
-	    threading.Thread.__init__(self)
-	    self.redis = redis.Redis()
-	    self.pubsub = self.redis.pubsub()
-	    self.pubsub.subscribe(channels)
-	    self.remote = Remote(app.config["PIONEER"], './static/js/devices.json')
-
-	def work(self, item):
-			print item['channel'], ":", item['data']
-			self.remote.send_cmd(item['data'])
-
-	def run(self):
-	    for item in self.pubsub.listen():
-	        if item['data'] == "KILL":
-	            self.pubsub.unsubscribe()
-	            print self, "unsubscribed and finished"
-	            break
-	        else:
-	        	if item["type"] == "message" and item["channel"] == "remote":
-							self.work(item)
 
 if __name__ == '__main__' :
-	print("Starting Redis event loop")
-	r = redis.Redis()
-	client = Listener(r, ['remote'])
-	client.start()
-	
+	print "Loagind JSON data"
+	json_data=open(app.config["DEVICE_FILE"]).read()
+	data = json.loads(json_data)
+	devices = []
+
+	for device in data:
+		print device
+		new_device = False
+
+		device_type = data[device]["type"]
+		if device_type=="telnet":
+			new_device = TelnetDevice(data[device]["IP"],app.config["DEVICE_FILE"], device)
+			new_device.start()
+
+		if new_device:
+			devices.append(new_device)
+		else:
+			print "Device {} not supported".format(device)
+
 	app.run()
